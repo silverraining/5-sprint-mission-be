@@ -1,0 +1,41 @@
+GET http://localhost:5555/products/88
+
+###
+
+GET http://localhost:5555/articles/123
+
+###
+
+POST http://localhost:5555/products
+Content-Type: application/json
+
+{
+  "name": "테스트  ",
+  "description": "테스트",
+  "price": 2222,
+  "tags":["테스트"]
+}
+
+###
+
+PATCH http://localhost:5555/articles/12345abcdecec/comments/12345abcdegbd444
+Content-Type: application/json
+
+{
+  "content": "쉽진 않겠지만 불가능하지도 않습니다"
+}
+
+###
+
+DELETE http://localhost:5555/articles/12345abcdecec/comments/8d807557-deb5-40b2-ba3e-9a197e8bd0b3
+
+###
+GET http://localhost:5555/articles/123/comments
+
+###
+POST http://localhost:5555/articles/123/comments
+Content-Type: application/json
+
+{
+  "content": "맛있겠다!!!"
+}

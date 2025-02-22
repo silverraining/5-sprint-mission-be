@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "is-email": "^1.0.2",
+    "is-uuid": "^1.0.2",
+    "prisma": "^5.4.2",
+    "superstruct": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "seed": "node prisma/mock/seed.js"
+  },
+  "prisma": {
+    "seed": "node prisma/mock/seed.js"
+  }
+}

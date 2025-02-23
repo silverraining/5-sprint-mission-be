@@ -1,36 +1,15 @@
 import * as dotenv from "dotenv";
-dotenv.config();
 import express from "express";
+import cors from "cors";
+import router from "./routes/index.js";
+dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-app.get("/users", async (req, res) => {
-  // 유저 목록 조회
-  res.send(users);
-});
+app.use("/", router);
 
-app.get("/users/:id", async (req, res) => {
-  const { id } = req.params;
-  // id에 해당하는 유저 조회
-  res.send(user);
-});
+const PORT = process.env.PORT || 5000;
 
-app.post("/users", async (req, res) => {
-  // 리퀘스트 바디 내용으로 유저 생성
-  res.status(201).send(user);
-});
-
-app.patch("/users/:id", async (req, res) => {
-  const { id } = req.params;
-  // 리퀘스트 바디 내용으로 id에 해당하는 유저 수정
-  res.send(user);
-});
-
-app.delete("/users/:id", async (req, res) => {
-  const { id } = req.params;
-  // id에 해당하는 유저 삭제
-  res.sendStatus(204);
-});
-
-app.listen(process.env.PORT || 3000, () => console.log("Server Started"));
+app.listen(PORT, () => console.log(`Server Started :${PORT}`));

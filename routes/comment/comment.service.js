@@ -1,16 +1,19 @@
-import { Prisma } from "@prisma/client";
+import { prisma, ResourceType } from "../../prisma.service.js";
 
 const fetchCommentList = async (cursor, limit, resourceType, resourceId) => {
+  console.log("🔍 resourceType before:", resourceType);
+  const prismaResourceType = ResourceType[resourceType.toUpperCase()];
+  console.log("✅ Converted resourceType:", prismaResourceType);
   const take = parseInt(limit) || 10; // 한 번에 가져올 데이터 개수
   const cursorOptions = cursor
     ? { skip: 1, cursor: { id: cursor } } // 이전 데이터를 건너뜁니다.
     : {};
 
-  return await prisma.comments.findMany({
+  return await prisma.comment.findMany({
     ...cursorOptions,
     take,
     where: {
-      resourceType,
+      resourceType: prismaResourceType,
       resourceId,
     },
     orderBy: { createdAt: "asc" },
@@ -18,9 +21,9 @@ const fetchCommentList = async (cursor, limit, resourceType, resourceId) => {
 };
 
 const fetchCommentCount = async (resourceType, resourceId) => {
-  return await prisma.comments.count({
+  return await prisma.comment.count({
     where: {
-      resourceType,
+      resourceType: ResourceType[resourceType.toUpperCase()],
       resourceId,
     },
   });
@@ -28,16 +31,16 @@ const fetchCommentCount = async (resourceType, resourceId) => {
 
 const addComment = async (resourceType, resourceId, content) => {
   try {
-    return await prisma.comments.create({
+    return await prisma.comment.create({
       data: { resourceType, resourceId, content },
     });
   } catch (err) {
-    throw new Error(`- Database error while add comments :: ${err.message}`);
+    throw new Error(`- Database error while add comment :: ${err.message}`);
   }
 };
 const modifyComment = async (id, content) => {
   try {
-    return await prisma.comments.update({
+    return await prisma.comment.update({
       data: { content },
       where: {
         id,
@@ -49,7 +52,7 @@ const modifyComment = async (id, content) => {
 };
 const removeComment = async (id) => {
   try {
-    return await prisma.comments.delete({
+    return await prisma.comment.delete({
       where: {
         id,
       },
@@ -61,7 +64,7 @@ const removeComment = async (id) => {
 
 const existComment = async (id) => {
   try {
-    const comment = await prisma.comments.findUnique({
+    const comment = await prisma.comment.findUnique({
       where: {
         id,
       },
@@ -72,7 +75,7 @@ const existComment = async (id) => {
   }
 };
 
-const commentService = {
+const commentervice = {
   fetchCommentList,
   addComment,
   modifyComment,
@@ -81,4 +84,4 @@ const commentService = {
   existComment,
 };
 
-export default commentService;
+export default commentervice;

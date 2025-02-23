@@ -1,11 +1,11 @@
-import { Prisma } from "@prisma/client";
+import prisma from "../../prisma.service.js";
 
 const fetchProductList = async (page, pageSize, orderBy, keyword) => {
   const skip = (page - 1) * pageSize;
   const orderByOption =
     orderBy === "favorite" ? { favoriteCnt: "desc" } : { createdAt: "desc" };
 
-  return await prisma.products.findMany({
+  return await prisma.product.findMany({
     skip,
     take: pageSize,
     where: {
@@ -20,7 +20,7 @@ const fetchProductList = async (page, pageSize, orderBy, keyword) => {
 };
 
 const fetchProductCount = async (keyword) => {
-  return await prisma.products.count({
+  return await prisma.product.count({
     where: {
       OR: [
         { title: { contains: keyword, mode: "insensitive" } },
@@ -33,7 +33,7 @@ const fetchProductCount = async (keyword) => {
 
 const addProduct = async ({ title, price, description, tags, imgUrl }) => {
   try {
-    return await prisma.products.create({
+    return await prisma.product.create({
       data: { title, price, description, tags, imgUrl },
     });
   } catch (err) {
@@ -43,7 +43,7 @@ const addProduct = async ({ title, price, description, tags, imgUrl }) => {
 
 const existProduct = async (id) => {
   try {
-    const product = await prisma.products.findUnique({
+    const product = await prisma.product.findUnique({
       where: {
         id,
       },
@@ -54,11 +54,11 @@ const existProduct = async (id) => {
   }
 };
 
-const productService = {
+const productervice = {
   fetchProductList,
   fetchProductCount,
   addProduct,
   existProduct,
 };
 
-export default productService;
+export default productervice;

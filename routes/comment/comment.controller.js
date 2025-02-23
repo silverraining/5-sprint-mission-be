@@ -4,14 +4,21 @@ import articleService from "../article/article.service.js";
 
 const fetchCommentList = async (req, res) => {
   const { resourceType, resourceId } = extractResource(req);
+  console.log("🔍 resourceType:", resourceType, "resourceId:", resourceId);
   const { cursor, limit = 10 } = req.query;
 
-  if (!(await validateResource(resourceType, resourceId)))
+  if (!(await validateResource(resourceType, resourceId))) {
+    console.log(`[ERROR] Invalid Resource ID: ${resourceType}, ${resourceId}`);
     return res
       .status(400)
       .send({ message: "The specified Resource ID does not exist." });
+  }
 
   try {
+    console.log(
+      `[DEBUG] Fetching comments - resourceType: ${resourceType}, resourceId: ${resourceId}, cursor: ${cursor}, limit: ${limit}`
+    );
+
     const commentList = await commentService.fetchCommentList(
       cursor,
       limit,
@@ -22,12 +29,19 @@ const fetchCommentList = async (req, res) => {
       resourceType,
       resourceId
     );
+
+    console.log(`[DEBUG] Retrieved comments count: ${totalCount}`);
+
     res.status(200).send({ list: commentList, totalCount });
   } catch (err) {
-    console.log(`Error API in GET '/comments' | message::${err.message}`);
+    console.error(
+      `Error API in GET '/comments' | message::${err.message}`,
+      err.stack
+    );
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+
 const addComment = async (req, res) => {
   const { resourceType, resourceId } = extractResource(req);
   const { content } = req.body;

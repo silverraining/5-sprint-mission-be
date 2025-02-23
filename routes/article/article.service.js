@@ -1,8 +1,8 @@
-import { Prisma } from "@prisma/client";
+import prisma from "../../prisma.service.js";
 
 const addArticle = async (title, content) => {
   try {
-    return await prisma.articles.create({
+    return await prisma.article.create({
       data: { title, content },
     });
   } catch (err) {
@@ -12,7 +12,7 @@ const addArticle = async (title, content) => {
 
 const fetchArticle = async (id) => {
   try {
-    return await prisma.articles.findUnique({
+    return await prisma.article.findUnique({
       where: {
         id,
       },
@@ -24,7 +24,7 @@ const fetchArticle = async (id) => {
 
 const modifyArticle = async (id, title, content) => {
   try {
-    return await prisma.articles.update({
+    return await prisma.article.update({
       data: { title, content },
       where: {
         id,
@@ -37,7 +37,7 @@ const modifyArticle = async (id, title, content) => {
 
 const removeArticle = async (id) => {
   try {
-    return await prisma.articles.delete({
+    return await prisma.article.delete({
       where: {
         id,
       },
@@ -49,7 +49,7 @@ const removeArticle = async (id) => {
 
 const existArticle = async (id) => {
   try {
-    const article = await prisma.articles.findUnique({
+    const article = await prisma.article.findUnique({
       where: {
         id,
       },
@@ -65,7 +65,7 @@ const fetchArticleList = async (page, pageSize, orderBy, keyword) => {
   const orderByOption =
     orderBy === "favorite" ? { favoriteCnt: "desc" } : { createdAt: "desc" };
 
-  return await prisma.articles.findMany({
+  return await prisma.article.findMany({
     skip,
     take: pageSize,
     where: {
@@ -79,7 +79,7 @@ const fetchArticleList = async (page, pageSize, orderBy, keyword) => {
 };
 
 const fetchArticleCount = async (keyword) => {
-  return await prisma.articles.count({
+  return await prisma.article.count({
     where: {
       OR: [
         { title: { contains: keyword, mode: "insensitive" } },
@@ -89,7 +89,7 @@ const fetchArticleCount = async (keyword) => {
   });
 };
 
-const articleService = {
+const articleervice = {
   fetchArticle,
   addArticle,
   modifyArticle,
@@ -99,4 +99,4 @@ const articleService = {
   fetchArticleCount,
 };
 
-export default articleService;
+export default articleervice;

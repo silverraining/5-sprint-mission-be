@@ -45,6 +45,6 @@ model Comment {
 }
 
 enum ResourceType {
-  Product
-  Article
+  PRODUCT
+  ARTICLE
 }

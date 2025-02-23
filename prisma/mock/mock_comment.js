@@ -3,7 +3,7 @@ export const COMMENT = [
     id: "c1",
     content: "상태가 좋아 보이네요. 중고라 가격도 괜찮고요!",
     resourceId: "1",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-16T10:00:00.000Z",
     updatedAt: "2024-02-16T10:00:00.000Z",
   },
@@ -11,7 +11,7 @@ export const COMMENT = [
     id: "c2",
     content: "미개봉이라니 믿음이 갑니다. 바로 구매하겠습니다!",
     resourceId: "2",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-15T15:00:00.000Z",
     updatedAt: "2024-02-15T15:00:00.000Z",
   },
@@ -19,7 +19,7 @@ export const COMMENT = [
     id: "c3",
     content: "중고지만 정말 튼튼해 보이네요. 캠핑에 딱일 듯합니다.",
     resourceId: "3",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-14T12:30:00.000Z",
     updatedAt: "2024-02-14T12:30:00.000Z",
   },
@@ -27,7 +27,7 @@ export const COMMENT = [
     id: "c4",
     content: "플스5 중고 매물 찾던 중인데 상태가 좋아 보입니다!",
     resourceId: "4",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-13T18:00:00.000Z",
     updatedAt: "2024-02-13T18:00:00.000Z",
   },
@@ -35,7 +35,7 @@ export const COMMENT = [
     id: "c5",
     content: "초보자용 우쿨렐레를 중고로 구매할 수 있다니 좋네요.",
     resourceId: "5",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-12T09:00:00.000Z",
     updatedAt: "2024-02-12T09:00:00.000Z",
   },
@@ -43,7 +43,7 @@ export const COMMENT = [
     id: "c6",
     content: "전자레인지가 거의 새것이라니, 중고라고 믿기 힘드네요!",
     resourceId: "6",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-11T14:00:00.000Z",
     updatedAt: "2024-02-11T14:00:00.000Z",
   },
@@ -51,7 +51,7 @@ export const COMMENT = [
     id: "c7",
     content: "요가 매트 중고라도 괜찮아요. 두꺼운 게 필요했거든요.",
     resourceId: "7",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-10T08:30:00.000Z",
     updatedAt: "2024-02-10T08:30:00.000Z",
   },
@@ -59,7 +59,7 @@ export const COMMENT = [
     id: "c8",
     content: "야마하 디지털 피아노라니 중고라도 품질 좋겠네요!",
     resourceId: "8",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-09T11:45:00.000Z",
     updatedAt: "2024-02-09T11:45:00.000Z",
   },
@@ -67,7 +67,7 @@ export const COMMENT = [
     id: "c9",
     content: "러닝화 상태가 어떤지 더 자세히 보고 싶어요.",
     resourceId: "9",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-08T17:15:00.000Z",
     updatedAt: "2024-02-08T17:15:00.000Z",
   },
@@ -75,14 +75,14 @@ export const COMMENT = [
     id: "c10",
     content: "빈티지 카페 의자, 중고지만 분위기 살릴 것 같아요.",
     resourceId: "10",
-    resourceType: "Product",
+    resourceType: "PRODUCT",
     createdAt: "2024-02-07T20:00:00.000Z",
     updatedAt: "2024-02-07T20:00:00.000Z",
   },
 
   {
     id: "comment1abcdeddd",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeddd",
     content: "이 맥북은 정말 상태가 좋네요! 가격이 궁금해요.",
     createdAt: "2025-01-22T09:08:10.179Z",
@@ -90,7 +90,7 @@ export const COMMENT = [
   },
   {
     id: "comment2abcdeseq",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeseq",
     content: "귤 농장에서 체험해본 적 있어요! 정말 맛있고 신선해요.",
     createdAt: "2025-01-22T09:10:05.179Z",
@@ -98,7 +98,7 @@ export const COMMENT = [
   },
   {
     id: "comment3abcdeaaa",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeaaa",
     content: "평냉 정말 맛있죠! 여름에 딱 맞는 음식이에요.",
     createdAt: "2025-01-22T09:11:58.179Z",
@@ -106,7 +106,7 @@ export const COMMENT = [
   },
   {
     id: "comment4abcdecec",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdecec",
     content: "백엔드 개발자가 되려면 처음에 무엇부터 공부하는 게 좋을까요?",
     createdAt: "2025-01-22T09:13:00.179Z",
@@ -114,7 +114,7 @@ export const COMMENT = [
   },
   {
     id: "comment5abcdeeee",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeeee",
     content:
       "중고차는 선택할 때 정말 신중해야 해요. 모델에 대해 더 알아보세요.",
@@ -123,7 +123,7 @@ export const COMMENT = [
   },
   {
     id: "comment6abcdefff",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdefff",
     content: "떡볶이는 정말 매력적인 음식이죠. 추천할만한 곳이 궁금해요!",
     createdAt: "2025-01-22T09:15:34.179Z",
@@ -131,7 +131,7 @@ export const COMMENT = [
   },
   {
     id: "comment7abcdeggg",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeggg",
     content: "재테크에 대해 많이 배우고 싶어요. 좋은 정보 감사합니다.",
     createdAt: "2025-01-22T09:16:40.179Z",
@@ -139,7 +139,7 @@ export const COMMENT = [
   },
   {
     id: "comment8abcdehhh",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdehhh",
     content: "혼자 여행은 정말 멋진 경험이에요. 추천할만한 여행지 있으세요?",
     createdAt: "2025-01-22T09:17:29.179Z",
@@ -147,7 +147,7 @@ export const COMMENT = [
   },
   {
     id: "comment9abcdeiii",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeiii",
     content: "기차 여행은 힐링이 될 수 있어요! 추천할만한 곳 있어요?",
     createdAt: "2025-01-22T09:18:25.179Z",
@@ -155,7 +155,7 @@ export const COMMENT = [
   },
   {
     id: "comment10abcdejjj",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdejjj",
     content:
       "운동할 때 들으면 좋은 음악, 제가 추천할게요! 어떤 스타일을 선호하세요?",
@@ -164,7 +164,7 @@ export const COMMENT = [
   },
   {
     id: "comment11abcdekkk",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdekkk",
     content:
       "자격증 공부는 처음엔 어렵지만 꾸준히 하면 정말 도움이 돼요. 시작하는 방법은 뭘로 할까요?",
@@ -173,7 +173,7 @@ export const COMMENT = [
   },
   {
     id: "comment12abcdelll",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdelll",
     content:
       "스마트폰 사용 줄이기, 정말 중요한 문제죠! 도움이 될 만한 앱 추천해주세요.",
@@ -182,7 +182,7 @@ export const COMMENT = [
   },
   {
     id: "comment13abcdeeee",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeeee",
     content:
       "반려동물 입양 전에는 정말 많은 것들을 고려해야 해요. 어떤 종류 고민 중이신가요?",
@@ -191,7 +191,7 @@ export const COMMENT = [
   },
   {
     id: "comment14abcdennn",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdennn",
     content: "영화 추천 감사합니다! 이번 주말에 바로 찾아볼게요.",
     createdAt: "2025-01-22T09:23:35.179Z",
@@ -199,7 +199,7 @@ export const COMMENT = [
   },
   {
     id: "comment15abcdeooo",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeooo",
     content: "자기계발서 추천해 주세요! 어떤 책을 읽을지 고민 중이에요.",
     createdAt: "2025-01-22T09:24:21.179Z",
@@ -207,7 +207,7 @@ export const COMMENT = [
   },
   {
     id: "comment16abcdeppp",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeppp",
     content: "기타 초보자에게 좋은 곡 추천 감사해요! 연습해보겠습니다.",
     createdAt: "2025-01-22T09:25:33.179Z",
@@ -215,7 +215,7 @@ export const COMMENT = [
   },
   {
     id: "comment17abcdeqqq",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdeqqq",
     content: "게임 추천해 주셔서 감사합니다! 어떤 게임이 재미있을까요?",
     createdAt: "2025-01-22T09:26:15.179Z",
@@ -223,7 +223,7 @@ export const COMMENT = [
   },
   {
     id: "comment18abcderrr",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcderrr",
     content: "여행지 추천 감사해요! 여행지 찾는 게 항상 어려운 일이에요.",
     createdAt: "2025-01-22T09:27:00.179Z",
@@ -231,7 +231,7 @@ export const COMMENT = [
   },
   {
     id: "comment19abcdesst",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdesst",
     content: "자기소개서 작성, 시작하기 정말 어렵죠. 좋은 팁 감사해요!",
     createdAt: "2025-01-22T09:28:11.179Z",
@@ -239,7 +239,7 @@ export const COMMENT = [
   },
   {
     id: "comment20abcdettt",
-    resourceType: "Article",
+    resourceType: "ARTICLE",
     resourceId: "12345abcdettt",
     content:
       "프로그래밍 공부 방법 정말 도움이 돼요. 참고할 만한 자료 찾고 있어요.",

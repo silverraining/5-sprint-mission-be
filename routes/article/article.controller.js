@@ -81,7 +81,7 @@ const fetchArticleList = async (req, res) => {
     pageSize = 10,
     orderBy = "recent",
     keyword = "",
-  } = req.body;
+  } = req.query; // ✅ GET 요청에서는 req.query 사용!
 
   try {
     const articleList = await articleService.fetchArticleList(

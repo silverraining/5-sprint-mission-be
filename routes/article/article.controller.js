@@ -1,4 +1,4 @@
-import articleService from "../service/article.service.js";
+import articleService from "./article.service.js";
 
 const addArticle = async (req, res) => {
   const { title, content } = req.body;

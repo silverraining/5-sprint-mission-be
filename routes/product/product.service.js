@@ -1,4 +1,4 @@
-import prisma from "../../../prismaClient.js";
+import { Prisma } from "@prisma/client";
 
 const fetchProductList = async (page, pageSize, orderBy, keyword) => {
   const skip = (page - 1) * pageSize;

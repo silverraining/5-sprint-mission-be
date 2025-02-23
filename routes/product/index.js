@@ -1,6 +1,6 @@
 import express from "express";
-import productController from "./controller/product.controller.js";
-import commentController from "../comment/controller/comment.controller.js";
+import productController from "./product.controller.js";
+import commentController from "../comment/comment.controller.js";
 
 const router = express();
 

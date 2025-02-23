@@ -1,6 +1,6 @@
-import commentService from "../service/comment.service.js";
-import productService from "../../product/service/product.service.js";
-import articleService from "../../article/service/article.service.js";
+import commentService from "./comment.service.js";
+import productService from "../product/product.service.js";
+import articleService from "../article/article.service.js";
 
 const fetchCommentList = async (req, res) => {
   const { resourceType, resourceId } = extractResource(req);

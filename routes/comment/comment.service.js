@@ -1,4 +1,4 @@
-import prisma from "../../../prismaClient.js";
+import { Prisma } from "@prisma/client";
 
 const fetchCommentList = async (cursor, limit, resourceType, resourceId) => {
   const take = parseInt(limit) || 10; // 한 번에 가져올 데이터 개수

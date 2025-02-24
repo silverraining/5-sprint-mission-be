@@ -1,4 +1,4 @@
-GET http://localhost:5004/articles?page=1&pageSize=10&orderBy=recent&keyword=
+GET http://localhost:5004/products/5/comments
 
 ###
 

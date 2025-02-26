@@ -30,6 +30,11 @@ const fetchCommentCount = async (resourceType, resourceId) => {
 };
 
 const addComment = async (resourceType, resourceId, content) => {
+  console.log("📝 Prisma 저장 직전 데이터:", {
+    resourceType,
+    resourceId,
+    content,
+  });
   try {
     return await prisma.comment.create({
       data: { resourceType, resourceId, content },

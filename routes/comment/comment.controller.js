@@ -42,31 +42,68 @@ const fetchCommentList = async (req, res) => {
   }
 };
 
+// const addComment = async (req, res) => {
+//   const { resourceType, resourceId } = extractResource(req);
+//   const { content } = req.body;
+
+//   if (!content || typeof content !== "string")
+//     return res
+//       .status(400)
+//       .send({ message: "Content is required and must be a string." });
+//   if (!(await validateResource(resourceType, resourceId)))
+//     return res
+//       .status(400)
+//       .send({ message: "The specified Resource ID does not exist." });
+
+//   try {
+//     const comment = await commentService.addComment(
+//       resourceType,
+//       resourceId,
+//       content
+//     );
+//     res.status(201).send(comment);
+//   } catch (err) {
+//     console.log(`Error API in POST '/comments' | message::${err.message}`);
+//     res.status(500).send({ message: "Internal Server Error" });
+//   }
+// };
+
 const addComment = async (req, res) => {
+  console.log("📩 [POST] /comments 요청 받음");
+  console.log("🔹 요청 데이터:", req.body);
+
   const { resourceType, resourceId } = extractResource(req);
   const { content } = req.body;
 
-  if (!content || typeof content !== "string")
+  if (!content || typeof content !== "string") {
+    console.log("🚨 오류: content가 올바르지 않음!");
     return res
       .status(400)
       .send({ message: "Content is required and must be a string." });
-  if (!(await validateResource(resourceType, resourceId)))
+  }
+
+  if (!(await validateResource(resourceType, resourceId))) {
+    console.log(`🚨 오류: 유효하지 않은 resourceId (${resourceId})`);
     return res
       .status(400)
       .send({ message: "The specified Resource ID does not exist." });
+  }
 
   try {
+    console.log("✅ 댓글 저장 중...");
     const comment = await commentService.addComment(
       resourceType,
       resourceId,
       content
     );
+    console.log("🎉 저장 완료:", comment);
     res.status(201).send(comment);
   } catch (err) {
-    console.log(`Error API in POST '/comments' | message::${err.message}`);
+    console.log(`❌ Error API in POST '/comments' | message: ${err.message}`);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+
 const modifyComment = async (req, res) => {
   const { resourceType, resourceId } = extractResource(req);
   const { id, content } = req.body;
@@ -113,10 +150,10 @@ const extractResource = (req) => {
   let resourceId;
 
   if (path.includes("/products")) {
-    resourceType = "product";
+    resourceType = "PRODUCT";
     resourceId = req.params.id;
   } else if (path.includes("/articles")) {
-    resourceType = "article";
+    resourceType = "ARTICLE";
     resourceId = req.params.id;
   } else {
     throw new Error("Invalid resource type");
@@ -129,9 +166,9 @@ const validateResource = async (resourceType, resourceId) => {
   let exist = false;
 
   try {
-    if (resourceType === "product")
+    if (resourceType === "PRODUCT")
       exist = await productService.existProduct(resourceId);
-    if (resourceType === "article")
+    if (resourceType === "ARTICLE")
       exist = await articleService.existArticle(resourceId);
   } catch (err) {
     throw new Error("product, article 확인할 때 에러");

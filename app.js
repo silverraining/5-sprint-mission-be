@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://eunb-mission08.netlify.app/",
+    origin: "https://eunb-mission08.netlify.app",
   })
 );
 

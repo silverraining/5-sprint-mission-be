@@ -1,4 +1,4 @@
-GET http://localhost:5004/products/5/comments
+GET https://sprint-mission08-be.onrender.com/articles/c27619a7-a2fa-4b2f-ad4d-7925068e1d56/comments/cd5d5dd5-ac86-47b3-831a-89153cdcd1ea
 
 ###
 
@@ -18,11 +18,13 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:5004/users/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+PATCH https://sprint-mission08-be.onrender.com/articles/c27619a7-a2fa-4b2f-ad4d-7925068e1d56/comments/cd5d5dd5-ac86-47b3-831a-89153cdcd1ea
 Content-Type: application/json
 
 {
-  "address": "서울특별시 강남구 무실로 234번길 45-6"
+  "resourceType": "ARTICLE",
+  "resourceId": "c27619a7-a2fa-4b2f-ad4d-7925068e1d56",
+  "content": "이 글 정말 유익하네요! 감사합니다."
 }
 
 ###

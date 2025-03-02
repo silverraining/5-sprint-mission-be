@@ -103,31 +103,73 @@ const addComment = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-
-const modifyComment = async (req, res) => {
-  const { resourceType, resourceId } = extractResource(req);
-  const { id, content } = req.body;
-
-  if (!content || typeof content !== "string")
-    return res
-      .status(400)
-      .send({ message: "Content is required and must be a string." });
-  if (!(await validateResource(resourceType, resourceId)))
-    return res
-      .status(400)
-      .send({ message: "The specified Resource ID does not exist." });
+const fetchCommentById = async (req, res) => {
+  const { resourceType, resourceId, commentId } = req.params;
 
   try {
-    if (!(await commentService.existComment(id)))
-      return res.status(400).send({ message: "Invalid comment's id" });
+    // 댓글 조회
+    const comment = await commentService.fetchCommentById(
+      commentId,
+      resourceType,
+      resourceId
+    );
 
-    const comment = await commentService.modifyComment(id, content);
-    res.status(201).send(comment);
+    // 댓글이 없으면 404 반환
+    if (!comment) {
+      return res.status(404).send({ message: "Comment not found" });
+    }
+
+    // 댓글이 존재하면 해당 댓글을 반환
+    res.status(200).json(comment);
   } catch (err) {
-    console.log(`Error API in PATCH '/comments' | message::${err.message}`);
+    console.error(
+      `Error in GET '/${resourceType}/${resourceId}/comments/${commentId}' | message::${err.message}`
+    );
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+const modifyComment = async (req, res) => {
+  const { resourceType, resourceId, commentId } = req.params;
+  const { content } = req.body;
+
+  if (!content || typeof content !== "string") {
+    return res
+      .status(400)
+      .send({ message: "Content is required and must be a string." });
+  }
+
+  try {
+    // 1. 해당 리소스(article, product)가 존재하는지 검증
+    if (!(await validateResource(resourceType, resourceId))) {
+      return res
+        .status(400)
+        .send({ message: "The specified resource does not exist." });
+    }
+
+    // 2. 해당 리소스에 댓글이 존재하는지 확인
+    if (
+      !(await commentService.existComment(commentId, resourceType, resourceId))
+    ) {
+      return res
+        .status(404)
+        .send({ message: "Comment not found for this resource." });
+    }
+
+    // 3. 댓글 수정 실행 (id만 전달)
+    const updatedComment = await commentService.modifyComment(
+      commentId,
+      content
+    );
+
+    res.status(200).send(updatedComment);
+  } catch (err) {
+    console.error(
+      `Error in PATCH '/${resourceType}/${resourceId}/comments/${commentId}' | message::${err.message}`
+    );
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+};
+
 const removeComment = async (req, res) => {
   const id = req.params.id;
 
@@ -179,6 +221,7 @@ const validateResource = async (resourceType, resourceId) => {
 
 const commentController = {
   fetchCommentList,
+  fetchCommentById,
   addComment,
   modifyComment,
   removeComment,

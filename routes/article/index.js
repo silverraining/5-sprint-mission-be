@@ -11,8 +11,8 @@ router.patch("/", articleController.modifyArticle);
 router.delete("/:id", articleController.removeArticle);
 
 router.post("/:id/comments", commentController.addComment);
-router.patch("/:id/comments", commentController.modifyComment);
-router.delete("/:id/comments/:id", commentController.removeComment);
+router.patch("/:id/comments/:commentId", commentController.modifyComment);
+router.delete("/:id/comments/:commentId", commentController.removeComment);
 router.get("/:id/comments", commentController.fetchCommentList);
 
 export default router;

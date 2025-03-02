@@ -163,16 +163,18 @@ const modifyComment = async (req, res) => {
 };
 
 const removeComment = async (req, res) => {
-  const commentId = req.params.id;
-  console.log(`Received commentId: ${commentId}`); // 여기서 commentId를 로그로 찍어 확인
+  const { commentId } = req.params; // 댓글 ID만 받기
+  console.log(`Received request to delete comment with ID: ${commentId}`);
+
   try {
-    if (!(await commentService.existComment(commentId)))
-      return res.status(400).send({ message: "Invalid comment's id" });
+    // 댓글 삭제 서비스 호출
     await commentService.removeComment(commentId);
-    res.sendStatus(204);
+
+    // 성공 응답
+    res.sendStatus(204); // 204 No Content 응답 (성공적 삭제)
   } catch (err) {
-    console.log(
-      `Error API in DELETE '/comments/${commentId}' | message::${err.message}`
+    console.error(
+      `Error in DELETE '/comments/${commentId}' | message::${err.message}`
     );
     res.status(500).send({ message: "Internal Server Error" });
   }

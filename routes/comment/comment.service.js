@@ -71,30 +71,27 @@ const modifyComment = async (commentId, content) => {
   }
 };
 
-const existComment = async (commentId, resourceType, resourceId) => {
-  try {
-    const comment = await prisma.comment.findFirst({
-      where: {
-        id: commentId,
-        resourceType,
-        resourceId,
-      },
-    });
-    return !!comment;
-  } catch (err) {
-    throw new Error(
-      `Database error while checking if comment exists :: ${err.message}`
-    );
-  }
+const existComment = async (commentId) => {
+  const comment = await prisma.comment.findUnique({
+    where: { id: commentId },
+  });
+  return !!comment; // 댓글이 있으면 true 반환, 없으면 false
 };
 
+// 댓글 삭제
 const removeComment = async (commentId) => {
   try {
+    // 댓글 존재 여부 확인
+    if (!(await existComment(commentId))) {
+      throw new Error("Invalid comment's id"); // 댓글이 존재하지 않으면 오류 발생
+    }
+
+    // 댓글 삭제
     return await prisma.comment.delete({
       where: { id: commentId },
     });
   } catch (err) {
-    throw new Error(`- Database error while remove comment :: ${err.message}`);
+    throw new Error(`Database error while removing comment :: ${err.message}`);
   }
 };
 

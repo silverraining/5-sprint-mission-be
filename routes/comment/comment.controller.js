@@ -163,16 +163,16 @@ const modifyComment = async (req, res) => {
 };
 
 const removeComment = async (req, res) => {
-  const id = req.params.id;
-
+  const commentId = req.params.id;
+  console.log(`Received commentId: ${commentId}`); // 여기서 commentId를 로그로 찍어 확인
   try {
-    if (!(await commentService.existComment(id)))
+    if (!(await commentService.existComment(commentId)))
       return res.status(400).send({ message: "Invalid comment's id" });
-    await commentService.removeComment(id);
+    await commentService.removeComment(commentId);
     res.sendStatus(204);
   } catch (err) {
     console.log(
-      `Error API in DELETE '/comments/${id}' | message::${err.message}`
+      `Error API in DELETE '/comments/${commentId}' | message::${err.message}`
     );
     res.status(500).send({ message: "Internal Server Error" });
   }

@@ -88,12 +88,10 @@ const existComment = async (commentId, resourceType, resourceId) => {
   }
 };
 
-const removeComment = async (id) => {
+const removeComment = async (commentId) => {
   try {
     return await prisma.comment.delete({
-      where: {
-        id,
-      },
+      where: { id: commentId },
     });
   } catch (err) {
     throw new Error(`- Database error while remove comment :: ${err.message}`);

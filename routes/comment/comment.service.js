@@ -28,13 +28,12 @@ const fetchCommentCount = async (resourceType, resourceId) => {
     },
   });
 };
-const fetchCommentById = async (id, resourceType, resourceId) => {
+// 댓글 조회 (id만으로 조회)
+const fetchCommentById = async (id) => {
   try {
     const comment = await prisma.comment.findFirst({
       where: {
         id,
-        resourceType,
-        resourceId,
       },
     });
     if (!comment) {
@@ -64,7 +63,7 @@ const addComment = async (resourceType, resourceId, content) => {
 const modifyComment = async (commentId, content) => {
   try {
     return await prisma.comment.update({
-      where: { id: commentId }, // ID로만 찾고 수정
+      where: { id: commentId },
       data: { content },
     });
   } catch (err) {

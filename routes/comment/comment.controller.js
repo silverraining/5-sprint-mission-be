@@ -128,6 +128,7 @@ const fetchCommentById = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+
 const modifyComment = async (req, res) => {
   const { resourceType, resourceId, commentId } = req.params;
   const { content } = req.body;
@@ -139,32 +140,23 @@ const modifyComment = async (req, res) => {
   }
 
   try {
-    // 1. 해당 리소스(article, product)가 존재하는지 검증
-    if (!(await validateResource(resourceType, resourceId))) {
-      return res
-        .status(400)
-        .send({ message: "The specified resource does not exist." });
-    }
+    // 수정할 데이터 로그 확인
+    console.log("Received data for comment modification:", {
+      commentId,
+      content,
+    });
 
-    // 2. 해당 리소스에 댓글이 존재하는지 확인
-    if (
-      !(await commentService.existComment(commentId, resourceType, resourceId))
-    ) {
-      return res
-        .status(404)
-        .send({ message: "Comment not found for this resource." });
-    }
-
-    // 3. 댓글 수정 실행 (id만 전달)
+    // 댓글 수정
     const updatedComment = await commentService.modifyComment(
       commentId,
       content
     );
 
+    // 수정된 댓글 응답
     res.status(200).send(updatedComment);
   } catch (err) {
     console.error(
-      `Error in PATCH '/${resourceType}/${resourceId}/comments/${commentId}' | message::${err.message}`
+      `Error in PATCH '/${resourceType}s/${resourceId}/comments/${commentId}' | message::${err.message}`
     );
     res.status(500).send({ message: "Internal Server Error" });
   }

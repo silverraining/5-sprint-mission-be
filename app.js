@@ -9,7 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://eunb-mission08.netlify.app", "http://localhost:3000"],
+    origin: [
+      "https://eunb-mission08.netlify.app",
+      "https://eunb-mission08.vercel.app",
+      "http://localhost:3000",
+    ],
   })
 );
 
